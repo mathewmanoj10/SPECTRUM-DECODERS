@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Molecule Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 80%;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Molecule</h1>
+    <form method="post">
+        <select name="molecule_name">
+            {% for molecule in test_molecules %}
+                <option value="{{ molecule }}">{{ molecule }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Predict</button>
+    </form>
+    
+    {% if plot_url %}
+        <h2>Prediction Result</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Predicted vs Actual Graph">
+    {% endif %}
+</body>
+</html>
